@@ -15,13 +15,17 @@ scripts = soup.find_all('script')
 """for i in a:
     print(i.find('require'))"""
 
-usr_id = ''
+temp = ''
 
+#find container_id from html source
 for i in scripts:
     n = i.prettify().find('container_id')
     if n != -1:
         for x in range(n, n+50):
-            usr_id = usr_id + i.prettify()[x]
+            temp = temp + i.prettify()[x]
+
+#extract usrID num from str found above
+usr_id = ''.join(list(filter(lambda x: x.isdigit() != 0, temp)))
 
 print(usr_id)
 
