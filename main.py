@@ -7,13 +7,14 @@ r = requests.get(input('instg url: '))
 
 soup = BeautifulSoup(r.text, "html.parser")
 scripts = soup.find_all('script')
+title = soup.find('title')
 
-"""with open('scr.txt', 'w+', encoding='utf-8') as f:
-    for i in a:
-        f.write(i.prettify() + '\n')"""
+with open("response.txt", "w", encoding='utf-8') as f:
+    f.write(soup.prettify())
 
-"""for i in a:
-    print(i.find('require'))"""
+with open('scr.txt', 'w+', encoding='utf-8') as f:
+    for i in scripts:
+        f.write(i.prettify() + '\n')
 
 temp = ''
 
@@ -28,6 +29,5 @@ for i in scripts:
 usr_id = ''.join(list(filter(lambda x: x.isdigit() != 0, temp)))
 
 print(usr_id)
+print(title)
 
-"""with open("response.txt", "w", encoding='utf-8') as f:
-    f.write(soup.prettify())"""
